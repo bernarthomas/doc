@@ -1,0 +1,12 @@
+sudo openssl req -new -x509 -nodes -out /etc/ssl/certs/mailserver.crt -keyout /etc/ssl/private/mailserver.key
+Country Name (2 letter code) [AU]:FR
+State or Province Name (full name) [Some-State]:"Midi-Pyrénées"
+Locality Name (eg, city) []:Toulouse
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:BernardPROD
+Organizational Unit Name (eg, section) []:section
+Common Name (e.g. server FQDN or YOUR name) []:doc
+Email Address []:bernarthomas@free.fr
+
+sudo chmod 440 /etc/ssl/private/mailserver.key
+sudo a2enmod ssl
+sudo service apache2 restart

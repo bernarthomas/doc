@@ -1,0 +1,15 @@
+sudo geany -i /etc/apache2/sites-available/doc.conf
+
+<VirtualHost *:443>
+  DocumentRoot /var/www/doc/public/
+  ServerName  doc
+  	<Directory />
+		Options Indexes FollowSymLinks
+		AllowOverride All
+        Require all granted
+    </Directory>
+  ServerSignature Off
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/mailserver.crt
+  SSLCertificateKeyFile /etc/ssl/private/mailserver.key
+</VirtualHost>
