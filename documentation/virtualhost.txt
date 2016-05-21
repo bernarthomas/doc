@@ -1,15 +1,27 @@
 sudo geany -i /etc/apache2/sites-available/doc.conf
+sudo geany -i /etc/hosts
 
 <VirtualHost *:443>
   DocumentRoot /var/www/doc/public/
   ServerName  doc
-  	<Directory />
-		Options Indexes FollowSymLinks
-		AllowOverride All
-        Require all granted
-    </Directory>
+  <Directory />
+	Options FollowSymLinks
+	AllowOverride None
+    Require all granted
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule .* index.php [END]
+  </Directory>
   ServerSignature Off
   SSLEngine on
   SSLCertificateFile /etc/ssl/certs/mailserver.crt
   SSLCertificateKeyFile /etc/ssl/private/mailserver.key
 </VirtualHost>
+
+sudo a2ensite doc.conf
+voir https.txt
+sudo a2enmod rewrite
+sudo service apache2 restart
+
+https://httpd.apache.org/docs/current/fr/mod/mod_rewrite.html
