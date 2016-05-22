@@ -12,7 +12,6 @@
          */
         public function render($route, $user, $message)
         {
-
             if (!class_exists('Params', false)) {
                 require '../Params.php';
             }
@@ -38,7 +37,6 @@
             $userRepo = new UserRepo();
             if (empty($_SESSION['courriel'])) {
                 $params = new Params();
-
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     require $params::APPLICATION_PATH . 'User.php';
                     $user = new User($_POST['courriel'], $_POST['passe']);
@@ -48,6 +46,8 @@
                     }  else {
                         throw new Exception(Params::NOT_FOUND_USER_EXCEPTION_MESSAGE, Params::NOT_FOUND_USER_EXCEPTION_CODE);
                     }
+                }  else {
+                    throw new Exception(Params::NOT_LOGGED_EXCEPTION_MESSAGE, Params::NOT_LOGGED_EXCEPTION_CODE);
                 }
                 if ($route === 'logout') {
                     $user = null;

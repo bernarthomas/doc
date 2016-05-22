@@ -37,6 +37,11 @@
         const _404_EXCEPTION_CODE = 6;
 
         /**
+         * Non connecté
+         */
+        const NOT_LOGGED_EXCEPTION_CODE = 7;
+
+        /**
          * message pour la non saisie du courriel
          */
         const EMPTY_COURRIEL_EXCEPTION_MESSAGE = 'Veuillez saisir un courriel';
@@ -65,6 +70,11 @@
          * Message 404
          */
         const _404_EXCEPTION_MESSAGE = 'page non trouvée';
+
+        /**
+         * Message non connecté
+         */
+        const NOT_LOGGED_EXCEPTION_MESSAGE = 'Veuillez vous connecter';
 
         /**
          * Tableau de mapping uri => nom de route
