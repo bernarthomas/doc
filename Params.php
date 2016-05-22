@@ -88,7 +88,8 @@
                 '/index.php' => 'home',
                 '/accueil' => 'home',
                 '/login' => 'login',
-                '/logout' => 'logout'
+                '/logout' => 'logout',
+              '/document' => 'document'
             ];
         }
 

@@ -35,8 +35,8 @@
                 if (empty($user))  {
                     $user = null;
                 }
-                    
-                echo $tools->render($route, $user, $message);
+                $templateName = $tools->runController($route);
+                echo $tools->render($templateName, $user, $message);
             }
         }
     }

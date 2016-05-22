@@ -1,15 +1,16 @@
 <?php
     class Tools
     {
-        /**
-         * Require les sous templates, les intègre dans le layout principal
-         *
-         * @param string $route nom de la route
-         * @param $user
-         * @param $message
-         *
-         * @return bool|string
-         */
+      /**
+       * Require les sous templates, les intègre dans le layout principal
+       *
+       * @param string $route nom de la route
+       * @param $user
+       * @param $message
+       * @param array $params
+       *
+       * @return bool|string
+       */
         public function render($route, $user, $message)
         {
             if (!class_exists('Params', false)) {
@@ -21,7 +22,8 @@
             if (!empty($_SESSION['courriel'])) {
                 $userInfos = $params->getRequiredContents($params::APPLICATION_PATH . 'userInfos.phtml', ['title' => $title, 'user' => $user]);
             }
-            $content = $params->getRequiredContents($params::APPLICATION_PATH . $route . '.phtml', ['title' => $title, 'userInfos' => $userInfos]);
+          var_dump($params::APPLICATION_PATH . $route . '.phtml');
+            $content = $params->getRequiredContents($params::APPLICATION_PATH . $route . '.phtml', ['title' => $title, 'userInfos' => $userInfos/*, 'params' => $parameters*/]);
 
             return $params->getRequiredContents($params::APPLICATION_PATH . 'layout.phtml', [
                 'title' => $title,
@@ -74,4 +76,15 @@
                 throw new Exception( Params::_404_EXCEPTION_MESSAGE, Params::_404_EXCEPTION_CODE);
             }
         }
+
+      public function runController($route)
+      {
+        $templateName = $route;
+        $fileName = Params::APPLICATION_PATH . ucfirst($route) . 'Controller.php';
+        if (file_exists($fileName)) {
+          require $fileName;
+        }
+
+        return $templateName;
+      }
     }

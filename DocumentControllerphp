@@ -1,0 +1,8 @@
+<?php
+  class DocumentController
+  {
+    public function listAction()
+    {
+
+    }
+  }
