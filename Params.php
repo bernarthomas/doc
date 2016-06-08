@@ -1,154 +1,199 @@
 <?php
-    class Params
-    {
-        /**
-         * Chemin de l'application
-         */
-        const APPLICATION_PATH = '/var/www/doc/';
 
-        /**
-         * code exception pour la non saisie du courriel
-         */
-        const EMPTY_COURRIEL_EXCEPTION_CODE = 1;
-        
-        /**
-         * code exception pour la saisie d'un courriel invalide
-         */
-        const INVALID_COURRIEL_EXCEPTION_CODE = 2;
+class Params
+{
+  /**
+   * Utilisateur sql
+   */
+  const DEFAULT_SQL_USER = 'doc';
 
-        /**
-         * code exception pour la non saisie du mot de passe
-         */
-        const INVALID_PASSWORD_EXCEPTION_CODE = 3;
+  /**
+   * Hôte sql
+   */
+  const DEFAULT_SQL_HOST = '127.0.0.1';
 
-        /**
-         * code exception pour un coupe courriel/Mot de passe non existant
-         */
-        const NOT_FOUND_USER_EXCEPTION_CODE = 4;
-        
-        /**
-         * code exception pour une déconnexion réussie
-         */
-        const SUCCES_LOGOUT_EXCEPTION_CODE = 5;
-        
-        /**
-         * Message 404
-         */
-        const _404_EXCEPTION_CODE = 6;
+  /**
+   * Mot de passe sql
+   */
+  const DEFAULT_SQL_PASS = 'AZEnbv78.';
 
-        /**
-         * Non connecté
-         */
-        const NOT_LOGGED_EXCEPTION_CODE = 7;
+  /**
+   * Base sql
+   */
+  const DEFAULT_SQL_DTB = 'doc';
 
-        /**
-         * message pour la non saisie du courriel
-         */
-        const EMPTY_COURRIEL_EXCEPTION_MESSAGE = 'Veuillez saisir un courriel';
+  /**
+   * Chemin de l'application
+   */
+  const APPLICATION_PATH = '/var/www/doc/';
 
-        /**
-         * message pour la saisie d'un courriel invalide
-         */
-        const INVALID_COURRIEL_EXCEPTION_MESSAGE = 'Veuillez saisir un courriel valide';
+  /**
+   * code exception pour la non saisie du courriel
+   */
+  const EMPTY_COURRIEL_EXCEPTION_CODE = 1;
 
-        /**
-         * message pour la non saisie du mot de passe
-         */
-        const INVALID_PASSWORD_EXCEPTION_MESSAGE = 'Veuillez saisir un mot de passe';
+  /**
+   * code exception pour la saisie d'un courriel invalide
+   */
+  const INVALID_COURRIEL_EXCEPTION_CODE = 2;
 
-        /**
-         * message pour un coupe courriel/Mot de passe non existant
-         */
-        const NOT_FOUND_USER_EXCEPTION_MESSAGE = 'Couple "courriel/mot de passe" non trouvé';
+  /**
+   * code exception pour la non saisie du mot de passe
+   */
+  const INVALID_PASSWORD_EXCEPTION_CODE = 3;
 
-         /**
-         * message Déconnection réussie
-         */
-        const SUCCES_LOGOUT_EXCEPTION_MESSAGE = 'Déconnexion réussie';
+  /**
+   * code exception pour un coupe courriel/Mot de passe non existant
+   */
+  const NOT_FOUND_USER_EXCEPTION_CODE = 4;
 
-         /**
-         * Message 404
-         */
-        const _404_EXCEPTION_MESSAGE = 'page non trouvée';
+  /**
+   * code exception pour une déconnexion réussie
+   */
+  const SUCCES_LOGOUT_EXCEPTION_CODE = 5;
 
-        /**
-         * Message non connecté
-         */
-        const NOT_LOGGED_EXCEPTION_MESSAGE = 'Veuillez vous connecter';
+  /**
+   * Message 404
+   */
+  const _404_EXCEPTION_CODE = 6;
 
-        /**
-         * Tableau de mapping uri => nom de route
-         *
-         * @return array
-         */
-        private function getRoutes()
-        {
-            return  [
-                '/' => 'home',
-                '/index.php' => 'home',
-                '/accueil' => 'home',
-                '/login' => 'login',
-                '/logout' => 'logout',
-              '/document' => 'document'
-            ];
-        }
+  /**
+   * Non connecté
+   */
+  const NOT_LOGGED_EXCEPTION_CODE = 7;
 
-        /**
-         * Route correspondant à l'uri
-         *
-         * @param $uri
-         *
-         * @return string nom de la route
-         */
-        public function getRoute($uri)
-        {
+  /**
+   * message pour la non saisie du courriel
+   */
+  const EMPTY_COURRIEL_EXCEPTION_MESSAGE = 'Veuillez saisir un courriel';
 
-            return $this->getRoutes()[$uri];
-        }
+  /**
+   * message pour la saisie d'un courriel invalide
+   */
+  const INVALID_COURRIEL_EXCEPTION_MESSAGE = 'Veuillez saisir un courriel valide';
 
-        /**
-         * Tablea de mapping route => title de la page
-         *
-         * @return array
-         */
-        private function getTitles()
-        {
-            return [
-                'home' => 'Accueil',
-                'login' => 'Connexion',
-                'logout' => 'Déconnexion'
-            ];
-        }
+  /**
+   * message pour la non saisie du mot de passe
+   */
+  const INVALID_PASSWORD_EXCEPTION_MESSAGE = 'Veuillez saisir un mot de passe';
 
-        /**
-         * Title de la page
-         *
-         * @param $route
-         *
-         * @return string Titre de la page
-         */
-        public function getTitle($route)
-        {
-            return $this->getTitles()[$route];
-        }
+  /**
+   * message pour un coupe courriel/Mot de passe non existant
+   */
+  const NOT_FOUND_USER_EXCEPTION_MESSAGE = 'Couple "courriel/mot de passe" non trouvé';
 
-        /**
-         * Inclut un fichier en lui passant les paramètres nécessaires
-         * 
-         * @param string $filename chemin du fichier à inclure
-         * @param array $vars paramet
-         * 
-         * @return bool|string
-         */
-        public function getRequiredContents($filename, $vars) {
-            if (is_file($filename)) {
-                extract($vars);
-                ob_start();
-                require $filename;
+  /**
+   * message Déconnection réussie
+   */
+  const SUCCES_LOGOUT_EXCEPTION_MESSAGE = 'Déconnexion réussie';
 
-                return ob_get_clean();
-            }
-            
-            return false;
-        }
+  /**
+   * Message 404
+   */
+  const _404_EXCEPTION_MESSAGE = 'page non trouvée';
+
+  /**
+   * Message non connecté
+   */
+  const NOT_LOGGED_EXCEPTION_MESSAGE = 'Veuillez vous connecter';
+
+  /**
+   * Tableau de mapping uri => nom de route
+   *
+   * @return array
+   */
+  private function getRoutes()
+  {
+    return [
+      '/' => 'home',
+      '/index.php' => 'home',
+      '/accueil' => 'home',
+      '/login' => 'login',
+      '/logout' => 'logout',
+      '/document/liste' => 'document_liste',
+      '/categorie/ajouter' => 'document_categorieajouter',
+      '/categorie/ajouterform' => 'document_categorieajouterform'
+    ];
+  }
+
+  private function getTemplates()
+  {
+    return [
+      'home' => 'home',
+      'login' => 'login',
+      'logout' => 'logout',
+      'document_liste' => 'document_liste',
+      'document_categorieajouter' => 'document_liste',
+      'document_categorieajouterform' => 'document_liste'
+    ];
+  }
+
+  /**
+   * Route correspondant à l'uri
+   *
+   * @param $uri
+   *
+   * @return string nom de la route
+   */
+  public function getRoute($uri)
+  {
+
+    return $this->getRoutes()[$uri];
+  }
+
+  public function getTemplate($route)
+  {
+
+    return self::getTemplates()[$route];
+  }
+
+  /**
+   * Tablea de mapping route => title de la page
+   *
+   * @return array
+   */
+  private function getTitles()
+  {
+    return [
+      'home' => 'Accueil',
+      'login' => 'Connexion',
+      'logout' => 'Déconnexion',
+      'document_liste' => 'Liste des documents',
+      'categorie_ajouter' => 'Liste des documents - Ajouter une catégorie',
+      'categorie_ajouterform' => 'Liste des documents - Catégorie ajoutée'
+    ];
+  }
+
+  /**
+   * Title de la page
+   *
+   * @param $route
+   *
+   * @return string Titre de la page
+   */
+  public function getTitle($route)
+  {
+    return $this->getTitles()[$route];
+  }
+
+  /**
+   * Inclut un fichier en lui passant les paramètres nécessaires
+   *
+   * @param string $filename chemin du fichier à inclure
+   * @param array $vars paramet
+   *
+   * @return bool|string
+   */
+  public function getRequiredContents($filename, $vars)
+  {
+    if (is_file($filename)) {
+      extract($vars);
+      ob_start();
+      require $filename;
+
+      return ob_get_clean();
     }
+
+    return false;
+  }
+}

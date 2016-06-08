@@ -27,7 +27,6 @@
          */
         public function isUser(User $user)
         {
-//var_dump($user);
             return in_array($user, $this->getUsers());
         }
 

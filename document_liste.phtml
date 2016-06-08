@@ -1,0 +1,24 @@
+<a href="https://doc/categorie/ajouter" xmlns="http://www.w3.org/1999/html">Ajouter une categorie</a>
+<?php if (!empty($retourControlleur['categorie_ajouter'])) { ?>
+  <div>
+    <h4>Ajouter une catégorie</h4>
+    <form method="post" action="https://doc/categlorie/ajouterform">
+      <input name="nom_categorie" placeholder="Nom de la catégorie" />
+      <input type="submit" value="Ajouter"/>
+      <input type="reset" value="annuler"/>
+    </form>
+  </div>
+<?php }
+if (empty($retourControlleur['liste'])) { ?>
+          <div>Aucun résultat</div>
+<?php } else { ?>
+    <form>
+      <select><option></option></select>
+    </form>
+    <table>
+      <tr><th>Catégories</th><th>Documents</th><th>Historique</th><th>Groupes</th></tr>
+      <tr><td>Impôts</td><td>Déclaration de revenus 2015</td><td>Importé par AB le 22/05/2005</td><td>Aucun</td></tr>
+      <tr><td>Factures</td><td>Chargeur de batteries tondeuses</td><td>Importé par BT le 22/05/2005</td><td>Aucun</td></tr>
+    </table>
+<?php }
+var_dump($retourControlleur);
